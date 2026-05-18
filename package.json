@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "GoalSync monorepo — build script for Render deployment",
   "scripts": {
-    "build": "cd client && npm install && npm run build",
+    "build": "cd client && npm install --include=dev && npm run build",
     "start": "cd server && node index.js",
     "install:server": "cd server && npm install"
   }
