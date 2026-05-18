@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
+const path = require("path");
 require("dotenv").config();
 
 const app = express();
@@ -29,6 +30,15 @@ app.use("/api/reports",      require("./routes/reports"));
 app.get("/api/health", (_req, res) => {
   const dbConnected = mongoose.connection.readyState === 1;
   res.json({ status: "ok", timestamp: new Date().toISOString(), dbConnected, uptime: Math.floor(process.uptime()) + "s" });
+});
+
+// ---------------------------------------------------------------------------
+// Serve React build in production (monolith deployment)
+// ---------------------------------------------------------------------------
+const clientDist = path.join(__dirname, "..", "client", "dist");
+app.use(express.static(clientDist));
+app.get("*", (_req, res) => {
+  res.sendFile(path.join(clientDist, "index.html"));
 });
 
 // ---------------------------------------------------------------------------
