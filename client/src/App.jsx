@@ -9,6 +9,7 @@ import Layout from "./components/common/Layout";
 import MyGoals from "./pages/employee/MyGoals";
 import CreateGoal from "./pages/employee/CreateGoal";
 import Approvals from "./pages/manager/Approvals";
+import ManagerDashboard from "./pages/manager/ManagerDashboard";
 import TeamGoals from "./pages/manager/TeamGoals";
 import EmployeeCheckIns from "./pages/employee/CheckIns";
 import ManagerCheckIns from "./pages/manager/ManagerCheckIns";
@@ -37,7 +38,7 @@ function FullScreenLoader() {
 /* ── Guards ──────────────────────────────────────────────────────────── */
 const roleLanding = {
   employee: "/employee/goals",
-  manager: "/manager/approvals",
+  manager: "/manager/dashboard",
   admin: "/admin/dashboard",
 };
 
@@ -96,13 +97,13 @@ function AppRoutes() {
 
         {/* Manager */}
         <Route path="/manager" element={<ProtectedRoute><RoleRoute roles={["manager"]}><Layout /></RoleRoute></ProtectedRoute>}>
-          <Route index element={<Navigate to="approvals" replace />} />
-          <Route path="dashboard" element={<Placeholder title="Manager Dashboard" />} />
+          <Route index element={<Navigate to="dashboard" replace />} />
+          <Route path="dashboard" element={<ManagerDashboard />} />
           <Route path="team"      element={<TeamGoals />} />
           <Route path="approvals" element={<Approvals />} />
           <Route path="checkins"  element={<ManagerCheckIns />} />
           <Route path="reports"   element={<Reports />} />
-          <Route path="*"         element={<Navigate to="approvals" replace />} />
+          <Route path="*"         element={<Navigate to="dashboard" replace />} />
         </Route>
 
         {/* Admin */}
