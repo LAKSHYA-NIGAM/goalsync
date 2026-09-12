@@ -1,10 +1,21 @@
 {
   "name": "goalsync",
   "version": "1.0.0",
-  "description": "GoalSync monorepo — build script for Render deployment",
+  "description": "GoalSync monorepo — Enterprise Goal Setting & Tracking Portal",
   "scripts": {
     "build": "cd client && npm install --include=dev && npm run build",
     "start": "cd server && node index.js",
+    "dev:server": "cd server && npm run dev",
+    "dev:client": "cd client && npm run dev",
     "install:server": "cd server && npm install"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.0",
+    "helmet": "^8.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.7.1"
   }
 }
