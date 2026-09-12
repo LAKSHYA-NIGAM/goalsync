@@ -8,18 +8,25 @@
  */
 const mongoose = require("mongoose");
 
-let isConnected = false;
-
 async function connectDB() {
-  if (isConnected) return;
+  // 0 = disconnected, 1 = connected, 2 = connecting, 3 = disconnecting
+  if (mongoose.connection.readyState === 1) return;
+
   const MONGO_URI = process.env.MONGO_URI;
   if (!MONGO_URI) {
     throw new Error("MONGO_URI environment variable is not set");
   }
+
+  // Close any stale/broken connections before reconnecting
+  if (mongoose.connection.readyState !== 0) {
+    try { await mongoose.disconnect(); } catch (_) { /* ignore */ }
+  }
+
   await mongoose.connect(MONGO_URI, {
     bufferCommands: false,
+    serverSelectionTimeoutMS: 5000,
+    connectTimeoutMS: 10000,
   });
-  isConnected = true;
   console.log("✅  MongoDB connected (serverless)");
 }
 
@@ -32,7 +39,7 @@ module.exports = async (req, res) => {
     await connectDB();
   } catch (err) {
     console.error("❌  MongoDB connection error:", err.message);
-    return res.status(500).json({ error: "Database connection failed" });
+    return res.status(500).json({ error: "Database connection failed", detail: err.message });
   }
   return app(req, res);
 };
