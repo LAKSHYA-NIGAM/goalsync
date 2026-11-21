@@ -6,10 +6,11 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
+    "test": "node --test tests/**/*.test.js",
     "seed": "node seed.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Lakshya Nigam",
   "license": "MIT",
   "dependencies": {
     "bcryptjs": "^2.4.3",
