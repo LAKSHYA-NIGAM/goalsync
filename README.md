@@ -98,6 +98,21 @@ The frontend dev server starts at **http://localhost:5173** and proxies API requ
 
 ---
 
+
+---
+
+## 🎯 OKR Engine & Milestone Health Monitoring
+
+1. **Weighted Key Result & Confidence Calculator (`server/services/okrCalculator.js`)**:
+   - Calculates Objective-level progress from weighted Key Results while capping individual KR over-performance at 100%.
+   - Computes dynamic OKR Confidence Index (0.0 to 1.0) and Pacing Ratios to classify goals (`ON_TRACK`, `NEEDS_ATTENTION`, `AT_RISK`, `COMPLETED`).
+   - Penalizes stale goals with low check-in frequencies over elapsed quarters.
+
+2. **Milestone Deadline & Escalation Detector (`server/services/deadlineDetector.js`)**:
+   - Computes calendar day deltas against target milestone due dates.
+   - Categorizes milestones into urgency levels (`ON_TRACK`, `APPROACHING_DEADLINE`, `OVERDUE`).
+   - Automatically triggers managerial escalation alerts for high-risk overdue deliverables.
+
 ## Environment Variables
 
 ### Server (`server/.env`)
