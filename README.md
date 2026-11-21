@@ -1,5 +1,11 @@
 # GoalSync — Enterprise Goal Setting & Tracking Portal
 
+
+[![GoalSync CI](https://github.com/LAKSHYA-NIGAM/goalsync/actions/workflows/ci.yml/badge.svg)](https://github.com/LAKSHYA-NIGAM/goalsync/actions/workflows/ci.yml)
+[![Node Version](https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen.svg)](https://nodejs.org/)
+[![Database](https://img.shields.io/badge/database-MongoDB-green.svg)](https://www.mongodb.com/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
 GoalSync is a full-stack web application for corporate goal setting, tracking, and check-ins. Built with React, Express, and MongoDB.
 
 ---
